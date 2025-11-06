@@ -135,8 +135,21 @@ class ReimbursementForm:
     delays: List[Delay]
     created_at: datetime = field(default_factory=datetime.now)
     
-    def export_to_text(self) -> str:
-        """Export form as formatted text for DB Fahrgastrechte."""
+    def mask_iban(self) -> str:
+        """Return masked IBAN for display (shows last 4 digits only)."""
+        if len(self.user_iban) > 4:
+            return "****" + self.user_iban[-4:]
+        return "****"
+    
+    def export_to_text(self, mask_sensitive: bool = False) -> str:
+        """
+        Export form as formatted text for DB Fahrgastrechte.
+        
+        Args:
+            mask_sensitive: If True, masks IBAN in output (for display only)
+        """
+        iban_display = self.mask_iban() if mask_sensitive else self.user_iban
+        
         lines = [
             "=" * 60,
             "DEUTSCHE BAHN FAHRGASTRECHTE - REIMBURSEMENT FORM",
@@ -149,7 +162,7 @@ class ReimbursementForm:
             "-" * 60,
             f"Name: {self.user_name}",
             f"Address: {self.user_address}",
-            f"IBAN: {self.user_iban}",
+            f"IBAN: {iban_display}",
             "",
             "COMPENSATION CLAIMS",
             "-" * 60,

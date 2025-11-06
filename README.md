@@ -250,6 +250,15 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 MIT License - see LICENSE file for details
 
+## Security & Privacy
+
+This tool handles sensitive information (IBAN, personal data) for generating reimbursement forms:
+- **Data Storage**: All data is stored locally in an SQLite database on your machine
+- **No External Transmission**: The tool does not send any data to external servers
+- **Display Protection**: IBAN numbers are masked in console output for security
+- **File Security**: Generated reimbursement forms contain full banking details - store them securely
+- **Recommendation**: Keep the database file and exported forms in a secure location
+
 ## Disclaimer
 
 This tool is for tracking and organizing compensation claims. Always verify the generated information before submitting to Deutsche Bahn. The developers are not responsible for any issues with submitted claims.

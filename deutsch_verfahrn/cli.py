@@ -158,9 +158,10 @@ def cmd_generate_form(args):
         print(f"  Form ID: {form.form_id}")
         print(f"  Amount: {format_currency(form.total_amount)}")
         print(f"  Saved to: {output_file}")
-        print(f"\n📄 Preview:")
+        print(f"\n📄 Preview (IBAN masked for security):")
         print("=" * 60)
-        print(form.export_to_text())
+        print(form.export_to_text(mask_sensitive=True))
+        print("\n⚠️  Note: The actual file contains the full IBAN for submission.")
 
 
 def main():

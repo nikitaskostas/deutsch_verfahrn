@@ -188,12 +188,20 @@ class TestReimbursementForm(unittest.TestCase):
             delays=[delay]
         )
         
+        # Test full export (unmasked)
         text = form.export_to_text()
         self.assertIn("Max Mustermann", text)
         self.assertIn("DE89370400440532013000", text)
         self.assertIn("ICE 123", text)
         self.assertIn("€25.00", text)
         self.assertIn("Berlin Hbf → München Hbf", text)
+        
+        # Test masked export
+        masked_text = form.export_to_text(mask_sensitive=True)
+        self.assertIn("Max Mustermann", masked_text)
+        self.assertNotIn("DE89370400440532013000", masked_text)
+        self.assertIn("****", masked_text)
+        self.assertIn("ICE 123", masked_text)
 
 
 if __name__ == "__main__":
