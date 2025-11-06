@@ -1,0 +1,2 @@
+# Core dependencies - using only standard library
+# No external dependencies required for core functionality

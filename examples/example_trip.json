@@ -1,0 +1,9 @@
+{
+  "origin": "Berlin Hauptbahnhof",
+  "destination": "München Hauptbahnhof",
+  "scheduled_departure": "2024-01-15T10:00:00",
+  "scheduled_arrival": "2024-01-15T14:00:00",
+  "ticket_price": 89.90,
+  "train_number": "ICE 123",
+  "class": "2nd Class"
+}
